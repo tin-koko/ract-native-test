@@ -8,8 +8,9 @@ import AnimatedFlatlist, {
 import MainScreen from "../../components/main-screen";
 
 const CountriesListScreen = () => {
-  const { loading, error, data } = useQuery(GET_COUNTRIES);
+  const { data } = useQuery(GET_COUNTRIES);
   const animatedListRef = useRef<AnimatedFlatlistHandle>(null);
+  console.log(data.countries[0]);
   return (
     <MainScreen>
       <Button
