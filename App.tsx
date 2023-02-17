@@ -1,15 +1,15 @@
 import React from "react";
-import { View } from "react-native";
 import { ApolloProvider } from "@apollo/client";
 import { client } from "./source/graphql/client";
 import AppNavigator from "./source/navigation";
+import { StatusBar } from "react-native";
+
+StatusBar.setBarStyle("light-content");
 
 function App(): JSX.Element {
   return (
     <ApolloProvider client={client}>
-      <View>
-        <AppNavigator />
-      </View>
+      <AppNavigator />
     </ApolloProvider>
   );
 }
