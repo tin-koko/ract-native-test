@@ -13,8 +13,16 @@ if (Platform.OS === "android") {
   }
 }
 
-type Item = {
+type Map = {
   name: string;
+};
+
+export type Item = {
+  name: string;
+  emoji: string;
+  phone: string;
+  languages: Map[];
+  continent: Map;
 };
 
 type AnimatedFlatlistProps = {
@@ -29,18 +37,31 @@ const AnimatedFlatlist = React.forwardRef<
   AnimatedFlatlistHandle,
   AnimatedFlatlistProps
 >(({ data, renderItem }, ref) => {
-  const [isGrid, setIsGrid] = useState(false);
+  const [columns, setColumns] = useState(1);
   const toggleList = () => {
     LayoutAnimation.configureNext({
       duration: 700,
-      update: { type: "linear", property: "scaleY" },
+      update: { type: "easeInEaseOut", property: "scaleXY" },
     });
-    setIsGrid((prev) => !prev);
+    setColumns((prev) => {
+      if (prev === 2) {
+        return 1;
+      } else {
+        return prev + 1;
+      }
+    });
   };
   React.useImperativeHandle(ref, () => ({
     toggleList,
   }));
-  return <FlatList horizontal={isGrid} data={data} renderItem={renderItem} />;
+  return (
+    <FlatList
+      key={columns}
+      numColumns={columns}
+      data={data}
+      renderItem={renderItem}
+    />
+  );
 });
 
 export default AnimatedFlatlist;

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import React, { useRef, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { GET_COUNTRIES } from "../../graphql/queries";

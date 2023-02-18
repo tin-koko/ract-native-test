@@ -1,8 +1,13 @@
 import { StyleSheet, Text as RNText, View } from "react-native";
-import React from "react";
+import React, { ReactNode } from "react";
+import TextStyles from "./styles";
 
-const Text = ({ children }) => {
-  return <RNText>{children}</RNText>;
+type TextProps = {
+  children: ReactNode;
+};
+
+const Text = ({ children }: TextProps) => {
+  return <RNText style={TextStyles.icon}>{children}</RNText>;
 };
 
 export default Text;
