@@ -23,24 +23,22 @@ type AnimatedFlatlistProps = {
 };
 
 export type AnimatedFlatlistHandle = {
-  setOrientation: (arg: string) => void;
+  toggleList: () => void;
 };
 const AnimatedFlatlist = React.forwardRef<
   AnimatedFlatlistHandle,
   AnimatedFlatlistProps
 >(({ data, renderItem }, ref) => {
-  const [isGrid, setIsGrid] = useState(true);
-  const setOrientation = (orientation: string) => {
+  const [isGrid, setIsGrid] = useState(false);
+  const toggleList = () => {
     LayoutAnimation.configureNext({
-      duration: 400,
-      delete: { type: "easeOut", property: "scaleY" },
-      update: { type: "easeInEaseOut", property: "scaleY" },
-      create: { type: "easeIn", property: "scaleY" },
+      duration: 700,
+      update: { type: "linear", property: "scaleY" },
     });
-    setIsGrid(() => orientation === "grid");
+    setIsGrid((prev) => !prev);
   };
   React.useImperativeHandle(ref, () => ({
-    setOrientation,
+    toggleList,
   }));
   return <FlatList horizontal={isGrid} data={data} renderItem={renderItem} />;
 });

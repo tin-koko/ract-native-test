@@ -10,7 +10,7 @@ type SearchInputProps = {
 export const SearchInputStyles = StyleSheet.create<SearchInputProps>({
   container: {
     paddingHorizontal: wp(12),
-    paddingVertical: hp(12),
+    paddingVertical: hp(8),
     borderWidth: 1,
     borderRadius: 10,
     borderColor: "white",

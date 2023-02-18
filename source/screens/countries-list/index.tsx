@@ -1,4 +1,4 @@
-import { Button, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import React, { useRef, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { GET_COUNTRIES } from "../../graphql/queries";
@@ -7,41 +7,39 @@ import AnimatedFlatlist, {
 } from "../../components/animated-flatlist";
 import MainScreen from "../../components/main-screen";
 import SearchInput from "../../components/search-input";
-import { GridButton, ListButton } from "../../components/icon-button";
+import { ListButton } from "../../components/icon-button";
 import CountriesStyles from "./styles";
+import CountryItem from "../../components/country-item";
 
 const CountriesListScreen = () => {
   const [selected, setSelected] = useState("list");
   const { data } = useQuery(GET_COUNTRIES);
   const animatedListRef = useRef<AnimatedFlatlistHandle>(null);
-  const setToGrid = () => {
-    animatedListRef.current?.setOrientation("grid");
-    setSelected("grid");
-  };
-  const setToList = () => {
-    animatedListRef.current?.setOrientation("list");
 
-    setSelected("list");
+  const toggleList = () => {
+    setSelected((prev) => {
+      if (prev === "list") {
+        return "grid";
+      } else {
+        return "list";
+      }
+    });
+    animatedListRef.current?.toggleList();
   };
   return (
     <MainScreen>
       <View style={CountriesStyles.searchview}>
         <SearchInput />
-        <ListButton selected={selected === "list"} onPress={setToList} />
-        <GridButton
-          selected={selected === "grid"}
-          style={CountriesStyles.gridButton}
-          onPress={setToGrid}
+        <ListButton
+          selected={selected === "list"}
+          onPress={toggleList}
+          style={CountriesStyles.iconButton}
         />
       </View>
       <AnimatedFlatlist
         ref={animatedListRef}
         data={data?.countries}
-        renderItem={({ item }) => (
-          <View>
-            <Text style={{ color: "red" }}>{item.name}</Text>
-          </View>
-        )}
+        renderItem={CountryItem}
       />
     </MainScreen>
   );

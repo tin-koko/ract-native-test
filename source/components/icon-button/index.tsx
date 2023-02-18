@@ -1,32 +1,45 @@
-import { StyleSheet, TouchableOpacity, ViewStyle } from "react-native";
-import React from "react";
+import {
+  Animated,
+  Pressable,
+  StyleSheet,
+  TouchableOpacity,
+  ViewStyle,
+} from "react-native";
+import React, { useRef } from "react";
 
 //Svg
 import ListSvg from "../../assets/svg/icons/list.svg";
-import GridSvg from "../../assets/svg/icons/grid.svg";
 import IconStyles from "./styles";
 
 type ButtonProps = {
-  onPress?: () => void;
+  onPress: () => void;
   style?: ViewStyle;
   selected?: boolean;
 };
 
 export const ListButton = ({ onPress, style, selected }: ButtonProps) => {
-  const iconStyle = selected ? IconStyles.selected : IconStyles.unselected;
+  const progress = useRef(new Animated.Value(0)).current;
+  const rotation = progress.interpolate({
+    inputRange: [0, 1],
+    outputRange: ["0deg", "90deg"],
+  });
+
+  const toggleIcon = () => {
+    Animated.timing(progress, {
+      toValue: selected ? 1 : 0,
+      useNativeDriver: true,
+    }).start();
+  };
+  const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
   return (
-    <TouchableOpacity style={[iconStyle, style]} onPress={onPress}>
+    <AnimatedPressable
+      style={[IconStyles(rotation).icon, style]}
+      onPress={() => {
+        toggleIcon();
+        onPress();
+      }}
+    >
       <ListSvg />
-    </TouchableOpacity>
-  );
-};
-
-export const GridButton = ({ onPress, style, selected }: ButtonProps) => {
-  const iconStyle = selected ? IconStyles.selected : IconStyles.unselected;
-
-  return (
-    <TouchableOpacity style={[iconStyle, style]} onPress={onPress}>
-      <GridSvg />
-    </TouchableOpacity>
+    </AnimatedPressable>
   );
 };

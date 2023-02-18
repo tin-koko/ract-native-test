@@ -4,7 +4,7 @@ import { wp } from "../../utils/responsiveFunctions";
 
 type CountriesProps = {
   searchview: ViewStyle;
-  gridButton: ViewStyle;
+  iconButton: ViewStyle;
 };
 
 export const CountriesStyles = StyleSheet.create<CountriesProps>({
@@ -12,8 +12,8 @@ export const CountriesStyles = StyleSheet.create<CountriesProps>({
     flexDirection: "row",
     alignItems: "center",
   },
-  gridButton: {
-    marginHorizontal: wp(12),
+  iconButton: {
+    marginRight: wp(20),
   },
 });
 
