@@ -15,7 +15,7 @@ const CountriesListScreen = () => {
   const [selected, setSelected] = useState("list");
   const { data } = useQuery(GET_COUNTRIES);
   const animatedListRef = useRef<AnimatedFlatlistHandle>(null);
-
+  console.log(data);
   const toggleList = () => {
     setSelected((prev) => {
       if (prev === "list") {
