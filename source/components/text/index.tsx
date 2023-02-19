@@ -4,10 +4,11 @@ import TextStyles from "./styles";
 
 type TextProps = {
   children: ReactNode;
+  size?: number;
 };
 
-const Text = ({ children }: TextProps) => {
-  return <RNText style={TextStyles.icon}>{children}</RNText>;
+const Text = ({ children, size }: TextProps) => {
+  return <RNText style={TextStyles(size).icon}>{children}</RNText>;
 };
 
 export default Text;

@@ -4,6 +4,17 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { routes } from "../constants/routes";
 import { CountriesListScreen, CountryInfoScreen } from "../screens";
 
+export type RootStackParamList = {
+  CountriesList: undefined;
+  CountryInfo: {
+    emoji: string;
+    name: string;
+    phone: string;
+    continent: { name: string };
+    languages: Array<{ code: string; name: string }>;
+  };
+};
+
 const Stack = createNativeStackNavigator();
 
 const AppNavigator = () => {
@@ -13,7 +24,6 @@ const AppNavigator = () => {
         screenOptions={{
           headerShown: false,
         }}
-        initialRouteName={routes.CountriesList}
       >
         <Stack.Screen
           name={routes.CountriesList}

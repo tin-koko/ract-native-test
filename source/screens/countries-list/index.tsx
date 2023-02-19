@@ -1,4 +1,4 @@
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import React, { useRef, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { GET_COUNTRIES } from "../../graphql/queries";
@@ -15,7 +15,6 @@ const CountriesListScreen = () => {
   const [selected, setSelected] = useState("list");
   const { data } = useQuery(GET_COUNTRIES);
   const animatedListRef = useRef<AnimatedFlatlistHandle>(null);
-  console.log(data);
   const toggleList = () => {
     setSelected((prev) => {
       if (prev === "list") {
@@ -26,10 +25,14 @@ const CountriesListScreen = () => {
     });
     animatedListRef.current?.toggleList();
   };
+
+  const scrollToIndex = (index: number) => {
+    animatedListRef.current?.scrollToIndex(index);
+  };
   return (
     <MainScreen>
       <View style={CountriesStyles.searchview}>
-        <SearchInput />
+        <SearchInput data={data?.countries} scrollToIndex={scrollToIndex} />
         <ListButton
           selected={selected === "list"}
           onPress={toggleList}
@@ -39,12 +42,10 @@ const CountriesListScreen = () => {
       <AnimatedFlatlist
         ref={animatedListRef}
         data={data?.countries}
-        renderItem={CountryItem}
+        RenderItem={CountryItem}
       />
     </MainScreen>
   );
 };
 
 export default CountriesListScreen;
-
-const styles = StyleSheet.create({});

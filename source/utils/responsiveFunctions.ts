@@ -1,6 +1,6 @@
-import { PixelRatio } from "react-native";
-import { SCREEN_HEIGHT, SCREEN_WIDTH } from "../constants/variables";
-
+import { Dimensions, PixelRatio } from "react-native";
+const SCREEN_WIDTH = Dimensions.get("window").width;
+const SCREEN_HEIGHT = Dimensions.get("window").height;
 // Frame according to figma design
 // Using my device size as there's no design
 const frame = { height: 844, width: 390 };

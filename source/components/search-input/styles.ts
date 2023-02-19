@@ -22,6 +22,8 @@ export const SearchInputStyles = StyleSheet.create<SearchInputProps>({
   textInput: {
     marginLeft: wp(12),
     fontFamily: "Gilroy-SemiBold",
+    color: "white",
+    flex: 1,
   },
 });
 
