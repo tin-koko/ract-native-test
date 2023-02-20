@@ -31,7 +31,7 @@
     "react-native-screens": "~3.18.0",
     "react-native-vector-icons": "^9.2.0",
     "react-native-web": "~0.18.9",
-    "react-test-renderer": "^18.2.0",
+    "react-test-renderer": "18.0.0",
     "ts-node": "^10.9.1"
   },
   "devDependencies": {
