@@ -16,3 +16,5 @@
 7. ExpoGo app can be used to launch the app too, using your phone(if you don't want to use an emulator)
 
 8. If you have an emulator(Android, X-code), option 7 is optional.
+
+9. Test is written with jest, run "npm test -- --watch" to test

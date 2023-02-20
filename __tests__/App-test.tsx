@@ -1,10 +1,7 @@
-// __tests__/Intro-test.js
 import React from 'react';
 import About from '../pages/About';
-import {render} from "@testing-library/react-native";
 import renderer from 'react-test-renderer';
 import Details from '../pages/Details';
-import CountryList from '../pages/CountryList';
 
 
 describe('About', () => {
