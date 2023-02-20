@@ -22,7 +22,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/tinkoko.png",
         "backgroundColor": "#FFFFFF"
       },
       "package": "damicode.tinkoko"

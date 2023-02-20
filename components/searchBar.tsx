@@ -1,18 +1,40 @@
-import { SafeAreaView } from "react-native";
-import { SearchBar } from "react-native-elements";
+import { StyleSheet, TextInput, SafeAreaView } from "react-native";
 
-export default function Searchbar({ search, setSearch }: any) {
+interface searchBarProps {
+    search: string;
+    setSearch(value: string): void;
+}
+export default function Searchbar({ search, setSearch }: searchBarProps ) {
   return (
     <SafeAreaView>
-      {/* @ts-ignore */}
-      <SearchBar
+      <TextInput
         placeholder="Search by country name..."
+        style={styles.search}
         value={search}
         onChangeText={setSearch}
-        lightTheme={true}
-        round={false}
-        showCancel={false}
       />
     </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  h1: {
+    fontWeight: "700",
+    fontSize: 28,
+  },
+  search: {
+    backgroundColor: "#fff",
+    height: 50,
+    width: '100%',
+    padding: 4,
+    margin: 4,
+    borderBottomWidth: .2,
+
+  },
+});

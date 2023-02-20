@@ -66,7 +66,7 @@ interface countryProps {
   native: string;
 }
 export default function CountryCard(search: searchProps) {
-  const { loading, error, data } = useQuery(GET_COUNTRY);
+  const { loading, data } = useQuery(GET_COUNTRY);
   
 
   const filterData = data?.countries?.filter((country: countryProps) =>

@@ -1,13 +1,7 @@
-import { StatusBar } from "expo-status-bar";
-import { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
-import CountryCard from "./components/CountryCard";
-import Searchbar from "./components/searchBar";
-
+import React from "react";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Home from "./pages/CountryList";
 import Details from "./pages/Details";
 import CountryList from "./pages/CountryList";
 import { BottomTabs } from "./components/BottomTabs";
@@ -29,7 +23,6 @@ export default function App() {
           name="BottomTabs"
           component={BottomTabs}
           options={{
-            // headerShown: false,
             headerStyle: {
               backgroundColor: 'green'
             },
@@ -38,7 +31,6 @@ export default function App() {
         />
         <Stack.Screen name="Country List" component={CountryList} />
         <Stack.Screen name="Details" component={Details}  options={{
-            // headerShown: false,
             headerStyle: {
               backgroundColor: 'green'
             },
@@ -46,7 +38,6 @@ export default function App() {
           }} />
       </Stack.Navigator>
       </ApolloProvider>
-    
     </NavigationContainer>
   );
 }
