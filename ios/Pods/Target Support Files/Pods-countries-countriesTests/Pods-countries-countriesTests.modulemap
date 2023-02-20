@@ -1,6 +1,0 @@
-module Pods_countries_countriesTests {
-  umbrella header "Pods-countries-countriesTests-umbrella.h"
-
-  export *
-  module * { export * }
-}
