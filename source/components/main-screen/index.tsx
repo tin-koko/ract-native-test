@@ -12,7 +12,10 @@ const MainScreen: FunctionComponent<AppScreenProps> = ({
   styles,
 }) => {
   return (
-    <SafeAreaView style={{ ...ScreenStyles.container, ...styles }}>
+    <SafeAreaView
+      testID="main-screen"
+      style={{ ...ScreenStyles.container, ...styles }}
+    >
       {children}
     </SafeAreaView>
   );

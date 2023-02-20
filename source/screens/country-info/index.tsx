@@ -1,10 +1,10 @@
-import { StyleSheet, View } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 import React from "react";
 import MainScreen from "../../components/main-screen";
 import Text from "../../components/text";
 import { BackButton } from "../../components/icon-button";
 import CountriesInfoStyles from "./styles";
-import { StackNavigationProp } from "@react-navigation/stack";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { ParamListBase } from "@react-navigation/native";
 
 interface InfoDisplayProps {
@@ -24,7 +24,7 @@ const InfoDisplay = ({ title, data }: InfoDisplayProps) => {
 };
 
 interface CountryInfoScreenProps {
-  navigation: StackNavigationProp<ParamListBase>;
+  navigation: NativeStackNavigationProp<ParamListBase>;
   route: {
     params: {
       emoji: string;
@@ -48,14 +48,14 @@ const CountryInfoScreen = ({ route }: CountryInfoScreenProps) => {
         </View>
         <InfoDisplay title={"Phone Code"} data={item.phone} />
         <InfoDisplay title={"Continent"} data={item.continent.name} />
-        <View style={CountriesInfoStyles.infoitemrow}>
+        <ScrollView horizontal>
           <Text size={18}>Languages:</Text>
           {item.languages.map((data) => (
             <View style={CountriesInfoStyles.infoitem} key={data.code}>
               <Text>{data.name}</Text>
             </View>
           ))}
-        </View>
+        </ScrollView>
       </View>
     </MainScreen>
   );

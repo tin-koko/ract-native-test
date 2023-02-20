@@ -1,20 +1,7 @@
-import {
-  LayoutAnimation,
-  Platform,
-  UIManager,
-  FlatList,
-  FlatListProps,
-} from "react-native";
+import { View, ActivityIndicator } from "react-native";
 import React, { useRef, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-import { hp, wp } from "../../utils/responsiveFunctions";
-import { LIST_ITEM_HEIGHT, LIST_ITEM_WIDTH } from "../../constants/variables";
-
-if (Platform.OS === "android") {
-  if (UIManager.setLayoutAnimationEnabledExperimental) {
-    UIManager.setLayoutAnimationEnabledExperimental(true);
-  }
-}
+import { FlashList } from "@shopify/flash-list";
 
 type Map = {
   name: string;
@@ -28,60 +15,52 @@ export type Item = {
   continent: Map;
 };
 
-type AnimatedFlatlistProps = {
+type AnimatedFlashlistProps = {
   RenderItem: any;
   data?: Item[];
 };
 
-export type AnimatedFlatlistHandle = {
+export type AnimatedFlashlistHandle = {
   toggleList: () => void;
   scrollToIndex: (index: number) => void;
 };
-const AnimatedFlatlist = React.forwardRef<
-  AnimatedFlatlistHandle,
-  AnimatedFlatlistProps
+const AnimatedFlashlist = React.forwardRef<
+  AnimatedFlashlistHandle,
+  AnimatedFlashlistProps
 >(({ data, RenderItem }, ref) => {
-  const flatRef = useRef<FlatList>(null);
+  const flashRef = useRef<FlashList<Item> | null>(null);
   const navigation = useNavigation();
   const [isGrid, setGrid] = useState(false);
   const toggleList = () => {
-    LayoutAnimation.configureNext({
-      duration: 700,
-      update: { type: "easeInEaseOut", property: "scaleXY" },
-    });
     setGrid((prev) => !prev);
   };
 
   const scrollToIndex = (index: number) => {
-    flatRef.current?.scrollToIndex({ animated: true, index: index });
+    flashRef.current?.scrollToIndex({ animated: true, index: index });
   };
   React.useImperativeHandle(ref, () => ({
     toggleList,
     scrollToIndex,
   }));
   return (
-    <FlatList
-      onScrollToIndexFailed={(info) => {
-        const wait = new Promise((resolve) => setTimeout(resolve, 500));
-        wait.then(() => {
-          flatRef.current?.scrollToIndex({ index: info.index, animated: true });
-        });
-      }}
-      ref={flatRef}
+    <FlashList
+      testID="flashlist"
+      keyboardShouldPersistTaps="always"
+      keyExtractor={(item) => item.name}
+      ref={flashRef}
       horizontal={isGrid}
       data={data}
       renderItem={({ item }) => (
         <RenderItem navigation={navigation} item={item} isGrid={isGrid} />
       )}
-      getItemLayout={(_, index) => ({
-        length: isGrid ? LIST_ITEM_WIDTH + wp(40) : LIST_ITEM_HEIGHT + hp(20),
-        offset: isGrid
-          ? (LIST_ITEM_WIDTH + wp(40)) * index
-          : (LIST_ITEM_HEIGHT + hp(20)) * index,
-        index,
-      })}
+      estimatedItemSize={100}
+      ListEmptyComponent={() => (
+        <View>
+          <ActivityIndicator color={"white"} />
+        </View>
+      )}
     />
   );
 });
 
-export default AnimatedFlatlist;
+export default AnimatedFlashlist;
