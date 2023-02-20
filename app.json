@@ -1,0 +1,39 @@
+{
+  "expo": {
+    "name": "tinkoko",
+    "slug": "tinkoko",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/tinkoko.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/tinkoko.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/tinkoko.png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "package": "damicode.tinkoko"
+    },
+    "web": {
+      "favicon": "./assets/tinkoko.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "09d8d97b-27f3-4c3f-b036-add3973770a1"
+      }
+    }
+  }
+}
