@@ -3,7 +3,7 @@
 1 **Expo CLI**\
 2 **Redux and Redux toolkit** (State Management)\
 3 **Apollo client**\
-4 **Jest**
+4 **Jest**\
 
 ## Requirements
 
