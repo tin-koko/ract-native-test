@@ -1,6 +1,6 @@
 import { Text } from "react-native";
-
 import { CountryInfoStyle as Styles } from "src/components/style";
+
 import type { Country } from "src/types";
 
 const CountryInfo = ({ name, emoji, phone, continent }: Country) => {

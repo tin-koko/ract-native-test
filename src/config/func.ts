@@ -1,10 +1,6 @@
-import type { Country } from "src/types";
+import { Dimensions, PixelRatio } from "react-native";
 
-type FilterProps = {
-  key: string;
-  data?: Country[];
-  by: keyof Omit<Country, "continent">;
-};
+import type { Country, FilterProps } from "src/types";
 
 /**
  * Filters an array of objects based on a specific property and a search key.
@@ -21,3 +17,9 @@ export const filterFunc = ({ key, data, by }: FilterProps) => {
     c[by].toLowerCase().includes(key.toLowerCase().trim())
   );
 };
+
+// just for fonts and margin and padding measurement
+const { width: ScreenW } = Dimensions.get("window");
+const fontScale = 385;
+export const scaledSizes = (size: number) =>
+  PixelRatio.roundToNearestPixel((ScreenW / fontScale) * size);

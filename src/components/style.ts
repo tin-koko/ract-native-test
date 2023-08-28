@@ -1,6 +1,5 @@
-import { StyleSheet, Dimensions } from "react-native";
-const { width } = Dimensions.get("window");
-const scaledSizes = (size: number) => (width / 375) * size;
+import { StyleSheet } from "react-native";
+import { scaledSizes } from "src/config/func";
 
 export const InputSheet = StyleSheet.create({
   textInput: {
@@ -38,7 +37,7 @@ export const MainScreenStyles = StyleSheet.create({
     justifyContent: "center",
     paddingHorizontal: scaledSizes(10),
   },
-  countryContainer: {
+  countryListContainer: {
     borderColor: "gray",
     borderRadius: scaledSizes(5),
     borderWidth: scaledSizes(1),

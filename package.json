@@ -29,7 +29,8 @@
     "react-redux": "^8.1.2",
     "redux": "^4.2.1",
     "redux-persist": "^6.0.0",
-    "use-async-effect": "^2.2.7"
+    "use-async-effect": "^2.2.7",
+    "expo-dev-client": "~2.4.8"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

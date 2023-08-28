@@ -21,3 +21,9 @@ interface Country {
 }
 
 export type CountryItemProps = { item: Country; onPress: () => void };
+
+export type FilterProps = {
+  key: string;
+  data?: Country[];
+  by: keyof Omit<Country, "continent">;
+};

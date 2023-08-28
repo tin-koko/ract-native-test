@@ -1,11 +1,13 @@
 import { useQuery, gql } from "@apollo/client";
 import { useEffect } from "react";
+
 import { ApolloClientConfig as client } from "src/config";
 import { useAppDispatch, useAppSelector } from "src/store";
 import { setCountries } from "src/store/reducers/countries";
+
 import type { Country } from "src/types";
 
-// Queries
+// Query all countries
 const COUNTRIES_QUERY = gql`
   query GetCountries {
     countries {
@@ -16,6 +18,7 @@ const COUNTRIES_QUERY = gql`
   }
 `;
 
+// Query by country code
 export const GET_COUNTRY_BY_CODE = gql`
   query GetInfo($code: ID!) {
     country(code: $code) {
@@ -39,10 +42,9 @@ export const useCountries = () => {
     COUNTRIES_QUERY,
     {
       client,
-      skip: countries.length !== 0 ? true : false,
+      skip: countries.length !== 0 ? true : false, // we only request for data if store is empty
     }
   );
-  console.info(data ? "Getting remote data" : "Using local data");
 
   useEffect(() => {
     if (!data) return;
@@ -59,12 +61,12 @@ export const useCountries = () => {
   };
 };
 
-export const useCountryByCode = (selectedCountry: string | null) => {
+export const useCountryByCode = (countryCode: string | null) => {
   return useQuery(GET_COUNTRY_BY_CODE, {
     client,
     variables: {
-      code: selectedCountry,
+      code: countryCode,
     },
-    skip: !selectedCountry,
+    skip: !countryCode, // user must select a country before making any request
   });
 };

@@ -1,21 +1,18 @@
-import React, { useState, memo, useMemo, useCallback } from "react";
+import React, { useState, useMemo, useCallback } from "react";
 import {
   FlatList,
   Text,
-  View,
   TouchableOpacity,
   ActivityIndicator,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useCountries, useCountryByCode } from "src/hook";
 
 import Input from "src/components/input";
 import CountryInfo from "src/components/elements/countryInfo";
 import { MainScreenStyles as Styles } from "src/components/style";
 
+import { useCountries, useCountryByCode } from "src/hook";
 import { filterFunc } from "src/config/func";
-
-import type { CountryItemProps } from "src/types";
 
 export default function MainScreen() {
   const [search, setSearch] = useState("");
@@ -32,14 +29,6 @@ export default function MainScreen() {
   const handleSearchChange = useCallback((text: string) => {
     setSearch(text);
   }, []);
-
-  const CountryItem = memo(({ item, onPress }: CountryItemProps) => (
-    <TouchableOpacity onPress={onPress} style={Styles.countryContainer}>
-      <Text style={Styles.countryItem}>
-        {item.name} {item.emoji}
-      </Text>
-    </TouchableOpacity>
-  ));
 
   return (
     <SafeAreaView style={Styles.container}>
@@ -60,10 +49,14 @@ export default function MainScreen() {
               showsVerticalScrollIndicator={false}
               keyboardShouldPersistTaps="handled"
               renderItem={({ item }) => (
-                <CountryItem
-                  item={item}
+                <TouchableOpacity
                   onPress={() => setSelectedCountry(item.code)}
-                />
+                  style={Styles.countryListContainer}
+                >
+                  <Text style={Styles.countryItem}>
+                    {item.name} {item.emoji}
+                  </Text>
+                </TouchableOpacity>
               )}
             />
           )}
