@@ -1,7 +1,7 @@
 ## Libs
 
-1 **Expo CLI**
-2 **Redux and Redux toolkit** (State Management)
+1 **Expo CLI** \
+2 **Redux and Redux toolkit** (State Management) \
 3 **Apollo client**
 
 ## Requirements
@@ -16,7 +16,9 @@
 - In the project directory, use **npm install** to install dependencies
 
 - **npx expo start** To start app
-- using the terminal, press **Press a │ open Android** or **Press i │ open iOS simulator**, on Mac OS selecting **i** will automatically open an emulator, for Android emulator is required to be open before clicking on **a** **Please Keep your emulators online**
+- using the terminal, press **Press a │ open Android** or **Press i │ open iOS simulator**, on Mac OS selecting **i** will automatically open an emulator, for Android emulator is required to be open before clicking on **a** 
+
+**Please Keep your emulators online**
 
 ## **Test Setup**
 
